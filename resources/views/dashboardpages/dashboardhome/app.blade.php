@@ -81,6 +81,8 @@
                             <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create Bus List</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ route('bus_add') }}">Add Bus</a> 
+                                <a class="dropdown-item" href="{{ route('list_view') }}">View Bus List</a>
+                                <a class="dropdown-item" href="{{ route('bus_terminal_reg') }}">Register Terminal</a>  
                                 
                                 
                                
@@ -108,10 +110,10 @@
 
 
 <!-- @if(Auth::user()->roleid == 1) -->
-            <li><a href="#" class="waves-effect"><i class="ti-home"></i><span class="badge badge-primary badge-pill float-right"></span> <span>Add Bus</span></a></li>
+            <!-- <li><a href="#" class="waves-effect"><i class="ti-home"></i><span class="badge badge-primary badge-pill float-right"></span> <span>Add Bus</span></a></li> -->
        <!--  @endif -->
                   
-
+<!-- Authentication -->
                     
 
 

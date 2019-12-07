@@ -13,11 +13,22 @@ use App\TotalSeat;
 use App\Coach;
 use App\Duration;
 use App\Terminal;
+use App\AddBus;
+use App\Registerterminal;
 
 
 
 class ticketinfoController extends Controller
-{
+{ 
+
+     //Not found Page
+    function not_found(){
+        return view('dashboardpages/dashboardhome/dashnotfound');
+    }
+
+
+
+
     
     // <-----------------------------------------Bus Name Start--------------------------------->
 	//busname page
@@ -494,11 +505,45 @@ class ticketinfoController extends Controller
         Terminal::findOrFail($id)->delete();
         return back();
     }
-// <-----------------------------------------Bus Terminal End---------------------------------> 
+// <-----------------------------------------Bus Terminal End--------------------------------->
+
+
+
+// <-----------------------------------register Terminal Start--------------------------------->
+
+
+    //Registered terminal
+    function reg_terminal()
+    {   $only_bus = AddBus::all();
+        $only_terminal = Terminal::all();
+        return view('dashboardpages/dashboardhome/ticketinfo/regterminal',compact('only_bus','only_terminal'));
+    } 
     
+    //Register Terminal Insert
+    function reg_terminal_insert(Request $request)
+    {
+        Registerterminal::insert([
+        'reg_operator_id' =>$request->reg_operator_id,
+        'reg_terminal_id' =>$request->reg_terminal_id,
+        ]);
+        Alert::success('Successfully registered Treminal Added', 'Success');
+        
+        return back();
+    }
+
+    //register Terminal view list
+    function reg_list()
+    {
+        $Reg_terminals = Registerterminal::all();
+        return view('dashboardpages/dashboardhome/ticketinfo/reg_ter_list',compact('Reg_terminals'));
+    }
+
+
+
+
 
  
-
+// <-----------------------------------register Terminal End--------------------------------->
 
    
 }

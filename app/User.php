@@ -19,7 +19,7 @@ class User extends Authenticatable
         'FirstName',
         'LastName',
         'email',
-        'PhoneNumber', 'password','roleid', 'statusid', 'username',
+        'PhoneNumber', 'password','roleid', 'statusid', 'username','blockid',
 
     ];
 

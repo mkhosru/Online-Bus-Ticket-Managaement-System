@@ -4,6 +4,30 @@
 
 
 
+//User Info check
+Route::get('/user/info', 'frontendController@user_index')->name('user_info');
+
+
+
+// User Buy Ticket(choose seat and boarding point)
+Route::post('/user/ticket', 'frontendController@user_buy_ticket')->name('buy_ticket_user');
+
+
+
+//Buy ticket
+Route::post('/user/buy/ticket', 'frontendController@buy_ticket')->name('ticket_buy');
+
+
+
+
+
+
+
+
+
+// stripr
+Route::get('stripe', 'StripePaymentController@stripe');
+Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
 
 
 
@@ -11,17 +35,41 @@
 // Dashboard------------------------>
 Route::get('/admin/dashboardpages', 'dashboardhomeController@index')->name('dashboard_home');
 Route::get('/admin/add_bus', 'dashboardhomeController@add')->name('dashboard_add_bus');
-Route::post('/admin/bus/insert', 'dashboardhomeController@insert')->name('bus_insert');
+Route::get('/admin/not_found', 'ticketinfoController@not_found')->name('dashboard_not_found');
 
 
-//dashboard Add bus Info
+// Route::post('/admin/bus/insert', 'dashboardhomeController@insert')->name('bus_insert');
+
+
+//Full Bus List
+//Add Bus information
+//dashboard Add bus Info form view blade
 Route::get('/admin/bus/addbus', 'addbusController@add_bus')->name('bus_add');
+//dashboard Add bus Insert info 
+Route::post('/admin/addbus/insert', 'addbusController@insert_bus_info')->name('insert_bus_add');
+//Bus list view complete list
+Route::get('/admin/buslist/view', 'addbusController@bus_list')->name('list_view');
+
+//Bus list Edit
+Route::get('/admin/buslist/Edit/{id}', 'addbusController@bus_list_edit')->name('bus_edit');
+
+//Bus list Update
+Route::post('/admin/buslist/update', 'addbusController@bus_list_update')->name('bus_list_update');
+
+//Bus List Delete
+Route::get('/admin/buslist/delete/{id}', 'addbusController@bus_list_delete')->name('bus_list_delete');
 
 
 
 
 
 
+
+
+
+
+
+//Idividual Bus Info
 // Ticket Info all part Dashboard ViewPage------------------------>
 Route::get('/admin/bus/busname', 'ticketinfoController@busname')->name('bus_busname');
 Route::get('/admin/bus/date', 'ticketinfoController@date')->name('bus_date');
@@ -42,6 +90,10 @@ Route::get('/admin/bus/duration', 'ticketinfoController@duration')->name('bus_du
 
 //Terminal name view page
 Route::get('/admin/bus/terminal', 'ticketinfoController@terminal')->name('bus_terminal');
+
+//Registered Terminal (view data)
+Route::get('/admin/bus/regterminal', 'ticketinfoController@reg_terminal')->name('bus_terminal_reg');
+
 
 
 
@@ -76,7 +128,11 @@ Route::post('/admin/duration/insert', 'ticketinfoController@duration_insert')->n
 //Bus Terminal Insert
 Route::post('/admin/terminal/insert', 'ticketinfoController@terminal_insert')->name('bus_terminal_insert');
 
+//Registered Terminal Insert 
+Route::post('/admin/regterminal/insert', 'ticketinfoController@reg_terminal_insert')->name('register_terminal_insert');
 
+////Registered Terminal View List
+Route::get('/admin/reg_terminal/list', 'ticketinfoController@reg_list')->name('list_reg');
 
 
 
@@ -208,8 +264,12 @@ Route::get('/admin/terminal/delete/{id}', 'ticketinfoController@terminal_delete'
 // Frontend------------------------>
 Route::get('/frontendpages/homepag', 'frontendController@index')->name('front_home_page');
 Route::get('/frontendpages/search', 'frontendController@search')->name('front_search');
-Route::get('/frontendpages/seat', 'frontendController@seat')->name('front_seat');
+Route::get('/frontendpages/seat/{id}', 'frontendController@seat')->name('front_seat');
 Route::get('/frontendpages/sign', 'frontendController@sign')->name('sign_in');
+Route::get('/frontendpages/about', 'frontendController@about')->name('about_page');
+
+//Bus List Search Result
+Route::post('/search', 'frontendController@search_result')->name('result_search');
 
 
 

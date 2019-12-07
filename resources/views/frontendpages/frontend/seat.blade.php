@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>   ROUTE 01 |   BlueBUS  </title>
+    <title>   ROUTE : {{ $bus_depearture }} To {{ $bus_destination }}  </title>
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('frontend/assets/images/logo/favicon.png') }}" type="image/x-icon">
 
@@ -77,7 +77,7 @@
     <div id="main-menu">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="https://ideal.thesoftking.com/bluebus">
+                <a class="navbar-brand" href="#">
                     <img src="../frontend/assets/images/logo/logo.png" alt="..">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -125,10 +125,11 @@
     " href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
        aria-expanded="false">Language    </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-            <a class="dropdown-item" href="#">ইংলিশ</a>
-                    <a class="dropdown-item" href="#">বাংলা</a>
-            </div>
-</li>                                            </ul>
+            <a class="dropdown-item" href="#">English</a>
+                   
+</div>
+</li>  
+ </ul>
 
 
              <a class="mamunur_rashid_top_book_btn" href="#">Buy Ticket</a>
@@ -147,9 +148,9 @@
             <div class="col-lg-8 col-md-10 text-center">
                 <div class="breadcrumbinfo">
                     <article>
-                        <h2>ROUTE 02</h2>
-                        <a href="https://ideal.thesoftking.com/bluebus">হোম</a> <span>/</span>
-                        <a class="active" href="1148.html">ROUTE 02</a>
+                        <h2>ROUTE :{{ $bus_depearture }} To {{ $bus_destination }}</h2>
+                       <!--  <a href="#">Home</a> <span>/</span>
+                        <a class="active" href="1148.html">ROUTE 02</a> -->
                     </article>
                 </div>
             </div>
@@ -162,21 +163,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                                            <h4>BUS COMPANY</h4>
+                                <h4>BUS COMPANY</h4>
                         <div class="margin-bottom-10"></div>
-                                                                <h6>Bus Operator</h6>
-                        <div class="margin-bottom-10"></div>
-                    
-                                            <p><strong><span class="text-danger">Route Name:</span> ROUTE 02
-                            </strong></p>
+                                <h6>{{ $bus_name }}</h6>
+                                <h6>Coach Type: {{ $Bus_coach }}</h6>
                         <div class="margin-bottom-10"></div>
                     
-                    <p>Dep Time: 11:03 AM <span
-                                class="text-success">(26 Oct 2019)</span></p>
+    <p><strong><span class="text-danger">Route Name:</span> {{ $bus_depearture }} To {{ $bus_destination }}</strong></p>
+                            
+                        <div class="margin-bottom-10"></div>
+                    
+                    <p>Dep Time: {{ $bus_time }} <span
+                                class="text-success">(Date:{{ $bus_date }})</span></p>
                     <div class="margin-bottom-5"></div>
-                    <strong>Total Seat: 41</strong>
+                    <strong>Total Seat: {{ $total_seat_id }}</strong>
                     <div class="margin-bottom-5"></div>
-                    <strong>Ticket Price : 50.00 USD</strong>
+                    <strong>Ticket Price : {{ $ticket_price }} TAKA</strong>
+                    <!-- <strong>Ticket Price : {{ $bus_depearture }}</strong> -->
                 </div>
             </div>
 
@@ -590,38 +593,38 @@
                                             <span class='seat-bottom'></span>
                                         </div>
                                     </div>
-                                </div>
+                             </div>
+                        </div>
                     </div>
-                </div>
-
-                            </div>
+               </div>
             
 
             <div class="col-md-6 col-sm-12">
-
-                <form action="#" class="price-details" id="bookingFrm" method="post" accept-charset="utf-8">
-                    <input type="hidden" name="_token" value="NIDL433gqQP8cjIVDuTF4VoNMFBUvBERPPkBSOHS">
+                <form action="{{ route('buy_ticket_user') }}" class="price-details" id="bookingFrm" method="post" accept-charset="utf-8">
+                    @csrf
+                    <!-- <input type="hidden" name="_token" value="NIDL433gqQP8cjIVDuTF4VoNMFBUvBERPPkBSOHS"> -->
                     <div class="form-group">
                         <label><strong>Choose Boarding Point <span class="text-danger">*</span></strong></label>
-                        <select name="boarding" id="stoppage" class="form-control form-control-lg boarding_point">
-                            <option value="">Boarding Point</option>
-                                                            <option value="point1">point1</option>
-                                                            <option value="point2">point2</option>
-                                                            <option value="point3">point3</option>
-                                                    </select>
+                    <select name="boarding_point_id" id="stoppage" class="form-control form-control-lg boarding_point">
+                        <option value="">Boarding Point</option>
+                        @foreach($boarding_point as $boardings)
+                        <option value="{{ $boardings->reg_terminal_id }}">{{ App\Terminal::findOrFail($boardings->reg_terminal_id)->terminal_name }}</option>
+                        @endforeach
+                    </select>
                     </div>
+                    <!-- <input type="text" name="boarding_point" value="{{ $boarding_point }}"> -->
 
 
-                                            <div class="form-group">
+                    <div class="form-group">
                             <h4> Facilities</h4>
                             <div id="facilities">
-                                                                                                    <div class="funkyradio">
-                                        <div class="funkyradio-default">
-                                            <input type="radio" checked/>
-                                            <label>Free Breakfast</label>
+                             <div class="funkyradio">
+                                    <div class="funkyradio-default">
+                                         <input type="radio" checked/>
+                                         <label>Free Breakfast</label>
                                         </div>
                                     </div>
-                                                            </div>
+                            </div>
                         </div>
                     
                     <div class="table-responsive ">
@@ -638,7 +641,30 @@
                             </tbody>
                         </table>
 
-                        <input type="hidden" name="trip_route_id" value="2">
+                        <input type="hidden" name="price" value="{{ $ticket_price }}">
+                        <input type="hidden" name="customer_name" value="{{ $customer }}">
+                        <input type="hidden" name="phone_id" value="{{ $customer_phone }}">
+                        <input type="hidden" name="operator" value="{{ $bus_name }}">
+                        <input type="hidden" name="coach_type" value="{{ $Bus_coach }}">
+                        <input type="hidden" name="journey_date_id" value="{{ $bus_date }}">
+                        <input type="hidden" name="time_id" value="{{ $bus_time }}">
+                        <input type="hidden" name="departure" value="{{ $bus_depearture }}">
+                        <input type="hidden" name="destination" value="{{ $bus_destination }}">
+
+                        <input type="hidden" name="bus_name" value="{{ $bus_name }}">
+                       <!--  <input type="text" name="boarding_point_id" value="{{ $boarding_point }}"> -->
+                        <input type="hidden" name="seat_number" value="">
+                        <input type="hidden" name="total_seat" value="{{  $total_seat_id }}">
+                        
+                        <input type="hidden" name="total_fare" value="">
+                        <input type="hidden" name="dura_chassis_num" value="{{ $chassis_no_dura }}">
+                        <input type="hidden" name="payment_status" value="">
+                        <input type="hidden" name="ticket_token" value="">
+                       
+                        
+
+
+                       <!--  <input type="hidden" name="trip_route_id" value="2">
                         <input type="hidden" name="fleet_registration_id"
                                value="1">
                         <input type="hidden" name="trip_id_no" value="1148">
@@ -647,9 +673,9 @@
                                value="1">
                         <input type="hidden" name="total_seat">
                         <input type="hidden" name="seat_number">
-                        <input type="hidden" name="price" value="50.00">
+                        
                         <input type="hidden" name="total_fare">
-                        <input type="hidden" name="booking_date" value="2019-10-26 11:00:03">
+                        <input type="hidden" name="booking_date" value="2019-10-26 11:00:03"> -->
 
                     </div>
                     <button id="submit-btn" class="btn btn-block">Continue</button>
@@ -676,11 +702,11 @@
                 </div>
                 <div class="col-md-6 col-sm-12 text-center">
                     <ul class="footer-soical">
-                                                    <li>  <a href="https://www.facebook.com/thesoftking"> <i class="fa fa-facebook"></i></a></li>
-                                                    <li>  <a href="http://thesoftking.com/contact#asda"> <i class="fa fa-twitter"></i></a></li>
-                                                    <li>  <a href="http://thesoftking.com/contact#asda"> <i class="fa fa-linkedin"></i></a></li>
-                                                    <li>  <a href="http://thesoftking.com/contact#asda"> <i class="fa fa-stack-overflow"></i></a></li>
-                                            </ul>
+                        <li>  <a href="https://www.facebook.com/thesoftking"> <i class="fa fa-facebook"></i></a></li>
+                        <li>  <a href="http://thesoftking.com/contact#asda"> <i class="fa fa-twitter"></i></a></li>
+                        <li>  <a href="http://thesoftking.com/contact#asda"> <i class="fa fa-linkedin"></i></a></li>
+                        <li>  <a href="http://thesoftking.com/contact#asda"> <i class="fa fa-stack-overflow"></i></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -741,7 +767,7 @@
             var seat_number = $('input[name=seat_number]');
 
             var price = $('input[name=price]').val();
-            var booking_date = $('input[name=booking_date]');
+            // var booking_date = $('input[name=booking_date]');
 
             var seatPreview = $('#seatPreview');
             var pricePreview = $('#pricePreview');
@@ -777,7 +803,7 @@
                 });
 
                 total_fare.val(countSeats * price);
-                $("#grandTotalPreview").text((countSeats * price) + " USD");
+                $("#grandTotalPreview").text((countSeats * price) + " TAKA");
                 total_seat.val(countSeats);
                 seat_number.val(seatSerial);
                 seatPreview.html(seatSerial);
@@ -790,55 +816,7 @@
             });
 
 
-            $(document).on('click', "#submit-btn", function (e) {
-                e.preventDefault();
-                var boarding = $("input[name=boarding]").val();
-                var trip_route_id = $("input[name=trip_route_id]").val();
-                var fleet_registration_id = $("input[name=fleet_registration_id]").val();
-                var trip_assign_id_no = $("input[name=trip_id_no]").val();
-                var id_no = $("input[name=id_no]").val();
-                var fleet_type_id = $("input[name=fleet_type_id]").val();
-                var total_seat = $("input[name=total_seat]").val();
-                var seat_number = $("input[name=seat_number]").val();
-                var price = $("input[name=price]").val();
-                var total_fare = $("input[name=total_fare]").val();
-                var booking_date = $("input[name=booking_date]").val();
-
-                $.ajax({
-                    type: "post",
-                    url: "https://ideal.thesoftking.com/bluebus/checked-seat",
-                    //contentType: false,
-                    //processData: false,
-                    data: {
-                        boarding: boarding,
-                        trip_route_id: trip_route_id,
-                        fleet_registration_id: fleet_registration_id,
-                        trip_assign_id_no: trip_assign_id_no,
-                        id_no: id_no,
-                        fleet_type_id: fleet_type_id,
-                        total_seat: total_seat,
-                        seat_number: seat_number,
-                        price: price,
-                        total_fare: total_fare,
-                        booking_date: booking_date
-                    },
-
-                    success: function (data) {
-                        console.log(data)
-                        if (data.status == 1000) {
-                            toastr.error(data.arr + " Seat Booked Yet. <br> Please select another seat");
-                        }
-                        if (data.pnr) {
-                            window.location.href = "https://ideal.thesoftking.com/bluebus/seat-book/details" + '/' + data.pnr;
-                        }
-                    },
-
-                    error: function (res) {
-                        //console.log(res);
-                    }
-                });
-
-            });
+            
         });
     </script>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\add_bus;
+use Auth;
 
 class dashboardhomeController extends Controller
 {
@@ -11,6 +12,7 @@ class dashboardhomeController extends Controller
   public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('block');
         // $this->middleware('status');
       
     }
@@ -20,6 +22,8 @@ class dashboardhomeController extends Controller
     {
     	return view('dashboardpages/dashboardhome/dashhome');
     }
+
+   
 
     // function add()
     // {

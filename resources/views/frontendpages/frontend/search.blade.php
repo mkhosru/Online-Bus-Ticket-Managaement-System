@@ -15,27 +15,53 @@ OBTMS-Home
                     <div class="breadcrumbinfo">
                         <article>
                             <span class="b-title">Stop Looking. Start Tracking!</span>
-                            <form action="https://ideal.thesoftking.com/bluebus/search" method="get">
-                                <div class="form-row">
-                                    <div class="col-12 col-md-3 col">
-                                        <input type="text" name="start_point" value=""
-                                               id="fromAutoComplete" class="form-control" placeholder="Form">
-                                    </div>
-                                    <div class="col-12 col-md-3 col">
-                                        <input type="text" name="end_point" value="" id="toAutoComplete"
-                                               class="form-control" placeholder="To">
-                                    </div>
-                                    <div class="col-12 col-md-3 col">
-                                        <input type="text" name="date" id="datetimepicker2"
-                                               value="26 Oct 2019" class="form-control"
-                                               placeholder="Date">
+            <form role="search" action="/search" method="post">
+                @csrf
+        <div class="form-row">
+            <div class="col-12 col-md-3 col">
+               <select name="start_point" class="form-control">
 
-                                    </div>
-                                    <div class="col-12 col-md-3 col">
-                                        <button type="submit" class="form-control h-serch">SEARCH</button>
-                                    </div>
-                                </div>
-                            </form>
+                        @foreach($departures as $departure)
+                            <option value="{{ $departure->id }}" >{{ $departure->departure_name }}</option>
+                          @endforeach
+
+               </select>
+            </div>
+            <div class="col-12 col-md-3 col">
+               
+               <select name="end_point" class="form-control">
+
+                        @foreach($destinations as $destination)
+                            <option value="{{ $destination->id }}" >{{ $destination->destination_palce }}</option>
+                            @endforeach
+
+               </select>
+
+            </div>
+
+                     <div class="col-12 col-md-3 col">
+               
+               <select name="date" class="form-control">
+
+                       @foreach($dates as $date)
+                            <option value="{{ $date->id }}" >{{ $date->date }}</option>
+                            @endforeach
+
+               </select>
+
+            </div>
+
+            <!-- <div class="col-12 col-md-3 col">
+                <input type="text" name="date" id="datetimepicker2"
+                       value="26 Oct 2019" class="form-control"
+                       placeholder="Date">
+
+            </div> -->
+            <div class="col-12 col-md-3 col">
+                <button type="submit" class="form-control h-serch">SEARCH</button>
+            </div>
+        </div>
+    </form>
                         </article>
                     </div>
                 </div>
@@ -49,349 +75,48 @@ OBTMS-Home
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <td>Operator</td>
-                                <td>Departure</td>
+                                <td>ID</td>
+                                <td>Operator name</td>
+                                <td>From</td>
+                                <td>To</td>
+                                <td>Coach Type</td>
+                                <td>Date</td>
+                                <td>Time</td>
                                 <td>Duration</td>
-                                <td>Distance</td>
-                                <td>Arrival</td>
                                 <td>Total Seat</td>
-                                <td>Fare</td>
+                                <td>Price</td>
                                 <td>View Seats</td>
                             </tr>
-                            </thead>
+                        </thead>
 
                             <tbody>
-                                                                                                <tr>
-                                        <td>
-                                            <div class="t-box-1">
-                                                <h5>ROUTE 01</h5>
-                                                <strong>26 Oct 2019</strong>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>11:03 AM</h5>
-                                            <strong class="text-success">Location 1</strong>
-                                        </td>
-                                        <td>
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <strong class="text-danger">5.5</strong>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <strong>500</strong>
-                                        </td>
-                                        <td>
-                                            <strong class="text-success">Location 2</strong>
-                                        </td>
+                                @foreach($all_addbus as $addbus)
+                               
+                              <tr>
+                                <th scope="row">{{ $addbus->id }}</th>
 
-                                        <td>
-                                            <div class="p-img">
-                                                <p>41 seats</p>
-                                            </div>
-                                            <p class="text-success">Coach</p>
-                                        </td>
-                                        
-
-                                        <td>
-
-                                            <div class="p-img">
-                                                                                                    <strong>50.00 USD</strong>
-
-                                                                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <div class="l-box">
-                                                <div class="media">
-                                                    <div class="media-body align-self-end">
-                                                        <div class="link">
-                                                            <a href="view-seat/1147.html" target="_blank">View
-                                                                Seats</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                                                    <tr>
-                                        <td>
-                                            <div class="t-box-1">
-                                                <h5>ROUTE 02</h5>
-                                                <strong>26 Oct 2019</strong>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>11:03 AM</h5>
-                                            <strong class="text-success">Location 2</strong>
-                                        </td>
-                                        <td>
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <strong class="text-danger">5.5</strong>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <strong>500</strong>
-                                        </td>
-                                        <td>
-                                            <strong class="text-success">Location 1</strong>
-                                        </td>
-
-                                        <td>
-                                            <div class="p-img">
-                                                <p>41 seats</p>
-                                            </div>
-                                            <p class="text-success">Coach</p>
-                                        </td>
-                                        
-
-                                        <td>
-
-                                            <div class="p-img">
-                                                                                                    <strong>50.00 USD</strong>
-
-                                                                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <div class="l-box">
-                                                <div class="media">
-                                                    <div class="media-body align-self-end">
-                                                        <div class="link">
-                                                            <a href="view-seat/1148.html" target="_blank">View
-                                                                Seats</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                                                    <tr>
-                                        <td>
-                                            <div class="t-box-1">
-                                                <h5>ROUTE 01</h5>
-                                                <strong>26 Oct 2019</strong>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>11:03 AM</h5>
-                                            <strong class="text-success">Location 1</strong>
-                                        </td>
-                                        <td>
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <strong class="text-danger">5.5</strong>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <strong>500</strong>
-                                        </td>
-                                        <td>
-                                            <strong class="text-success">Location 2</strong>
-                                        </td>
-
-                                        <td>
-                                            <div class="p-img">
-                                                <p>31 seats</p>
-                                            </div>
-                                            <p class="text-success">Classic</p>
-                                        </td>
-                                        
-
-                                        <td>
-
-                                            <div class="p-img">
-                                                                                                    <strong>55.00 USD</strong>
-
-                                                                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <div class="l-box">
-                                                <div class="media">
-                                                    <div class="media-body align-self-end">
-                                                        <div class="link">
-                                                            <a href="view-seat/1149.html" target="_blank">View
-                                                                Seats</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                                                    <tr>
-                                        <td>
-                                            <div class="t-box-1">
-                                                <h5>ROUTE 02</h5>
-                                                <strong>26 Oct 2019</strong>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>11:03 AM</h5>
-                                            <strong class="text-success">Location 2</strong>
-                                        </td>
-                                        <td>
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <strong class="text-danger">5.5</strong>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <strong>500</strong>
-                                        </td>
-                                        <td>
-                                            <strong class="text-success">Location 1</strong>
-                                        </td>
-
-                                        <td>
-                                            <div class="p-img">
-                                                <p>31 seats</p>
-                                            </div>
-                                            <p class="text-success">Classic</p>
-                                        </td>
-                                        
-
-                                        <td>
-
-                                            <div class="p-img">
-                                                                                                    <strong>55.00 USD</strong>
-
-                                                                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <div class="l-box">
-                                                <div class="media">
-                                                    <div class="media-body align-self-end">
-                                                        <div class="link">
-                                                            <a href="view-seat/1150.html" target="_blank">View
-                                                                Seats</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                                                    <tr>
-                                        <td>
-                                            <div class="t-box-1">
-                                                <h5>ROUTE 01</h5>
-                                                <strong>26 Oct 2019</strong>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>11:03 AM</h5>
-                                            <strong class="text-success">Location 1</strong>
-                                        </td>
-                                        <td>
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <strong class="text-danger">5.5</strong>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <strong>500</strong>
-                                        </td>
-                                        <td>
-                                            <strong class="text-success">Location 2</strong>
-                                        </td>
-
-                                        <td>
-                                            <div class="p-img">
-                                                <p>20 seats</p>
-                                            </div>
-                                            <p class="text-success">VIP</p>
-                                        </td>
-                                        
-
-                                        <td>
-
-                                            <div class="p-img">
-                                                                                                    <strong>99.00 USD</strong>
-
-                                                                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <div class="l-box">
-                                                <div class="media">
-                                                    <div class="media-body align-self-end">
-                                                        <div class="link">
-                                                            <a href="view-seat/1151.html" target="_blank">View
-                                                                Seats</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                                                    <tr>
-                                        <td>
-                                            <div class="t-box-1">
-                                                <h5>ROUTE 02</h5>
-                                                <strong>26 Oct 2019</strong>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>11:03 AM</h5>
-                                            <strong class="text-success">Location 2</strong>
-                                        </td>
-                                        <td>
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <strong class="text-danger">5.5</strong>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <strong>500</strong>
-                                        </td>
-                                        <td>
-                                            <strong class="text-success">Location 1</strong>
-                                        </td>
-
-                                        <td>
-                                            <div class="p-img">
-                                                <p>20 seats</p>
-                                            </div>
-                                            <p class="text-success">VIP</p>
-                                        </td>
-                                        
-
-                                        <td>
-
-                                            <div class="p-img">
-                                                                                                    <strong>99.00 USD</strong>
-
-                                                                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <div class="l-box">
-                                                <div class="media">
-                                                    <div class="media-body align-self-end">
-                                                        <div class="link">
-                                                            <a href="view-seat/1152.html" target="_blank">View
-                                                                Seats</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                                                                        </tbody>
-                        </table>
-                    </div>
+                                <th scope="row">{{ $addbus->relationbetweenBusName->operator_name }}</th>
+                                <th scope="row">{{ $addbus->relationbetweenDeparture->departure_name }}</th>
+                                <th scope="row">{{ $addbus->relationbetweenDestination->destination_palce }}</th>
+                                <th scope="row">{{ $addbus->relationbetweenCoachType->coach_type }}</th>
+                                <th scope="row">{{ $addbus->relationbetweenDate->date }}</th>
+                                <th scope="row">{{ $addbus->relationbetweenTime->time }}</th>
+                                <th scope="row">{{ $addbus->relationbetweenDuration->duration }}</th>
+                                <th scope="row">{{ $addbus->realtionbetweenTotalseat->total_seat }}</th>
+                                <th scope="row">{{ $addbus->relationbetweenPrice->price }}</th>
+                                    <td>
+                                        <a href="{{ url('/frontendpages/seat') }}\{{ $addbus->id }}" class="btn btn-primary" target="_blank">View
+                                            Seats</a>
+                                    </td>
+                                </tr>
+                              @endforeach       
+                        </tbody>
+                    </table>
+                </div>
 
 
                 </div>

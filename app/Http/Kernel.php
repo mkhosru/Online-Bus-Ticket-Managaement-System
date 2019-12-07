@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
 
         'role' => \App\Http\Middleware\CheckRole::class,
         'status' => \App\Http\Middleware\CheckStatus::class,
+        'block' => \App\Http\Middleware\BlockAdmin::class,
 
     ];
 

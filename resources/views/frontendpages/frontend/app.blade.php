@@ -94,24 +94,24 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link   active " href="https://ideal.thesoftking.com/bluebus">Home</a>
+                            <a class="nav-link   active " href="{{ route('front_home_page') }}">Home</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link " href="about-us.html">About </a>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link " href="blog.html">Blog</a>
+                            <a class="nav-link " href="#">About </a>
                         </li>
 
 
                         <li class="nav-item">
-                            <a class="nav-link " href="faqs.html">Faq</a>
+                            <a class="nav-link " href="#">Blog</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">Faq</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="contact-us.html">Contact</a>
+                            <a class="nav-link " href="#">Contact</a>
                         </li>
 
 
@@ -125,7 +125,7 @@
                             </div>
                         </li>
 
-                        <li class="nav-item dropdown">
+                <!--         <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle
                             " href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
        aria-expanded="false">Language    </a>
@@ -133,12 +133,13 @@
         <a class="dropdown-item" href="index.html">English</a>
         <a class="dropdown-item" href="index.html">Bangla</a>
      </div>
-       </li>    
+       </li> -->    
         </ul>
 
 
-             <a class="mamunur_rashid_top_book_btn" href="search.html">Buy Ticket</a>                   
+             <a class="mamunur_rashid_top_book_btn" href="{{ route('front_search') }}">Buy Ticket</a>                   
                 <a class="mamunur_rashid_top_book_btn" href="{{ url('/frontendpages/sign') }}">Sign In</a>
+                <!-- <a class="mamunur_rashid_top_book_btn" href="{{ url('/frontendpages/sign') }}">Sign out</a> -->
                  </div>
             </div>
         </nav>

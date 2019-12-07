@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('roleid')->default(2);
             $table->integer('statusid')->default(2);
+            $table->integer('blockid')->default(2);
 
 
             $table->rememberToken();
