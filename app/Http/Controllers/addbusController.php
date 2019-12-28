@@ -48,6 +48,7 @@ class addbusController extends Controller
          	'totalseat_id' =>$request->totalseat_id,
          	'price_id' =>$request->price_id,
          ]);
+         Alert::success('Successfully Bus route added', 'Successfully added');
          return back();
     	}
 

@@ -1,13 +1,7 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]>
-<html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]>
-<html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]>
-<html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
+
 <html lang="zxx">
-<!--<![endif]-->
+
 
 
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -82,7 +76,7 @@
     <div id="main-menu">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="../frontend/assets/images/logo/logo.png" alt="..">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -98,47 +92,80 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link " href="#">About </a>
+                            <a class="nav-link " href="{{route('about_page')}}">About </a>
                         </li>
 
 
                         <li class="nav-item">
-                            <a class="nav-link " href="#">Blog</a>
+                            <a class="nav-link " href="{{ route('blog') }}">Blog</a>
                         </li>
 
 
                         <li class="nav-item">
-                            <a class="nav-link " href="#">Faq</a>
+                            <a class="nav-link " href="{{ route('faq') }}">Faq</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#">Contact</a>
+                            <a class="nav-link " href="{{ url('/contact') }}">Contact</a>
                         </li>
 
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle
-                                                         " href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
-                               aria-expanded="false">Booking                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                                <a class="dropdown-item" href="login.html">Ticket Cancel</a>
-                                <a class="dropdown-item" href="ticket-print.html">Print Download</a>
-                            </div>
-                        </li>
-
-                <!--         <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle
-                            " href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
-       aria-expanded="false">Language    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-        <a class="dropdown-item" href="index.html">English</a>
-        <a class="dropdown-item" href="index.html">Bangla</a>
-     </div>
-       </li> -->    
+               
         </ul>
 
 
              <a class="mamunur_rashid_top_book_btn" href="{{ route('front_search') }}">Buy Ticket</a>                   
-                <a class="mamunur_rashid_top_book_btn" href="{{ url('/frontendpages/sign') }}">Sign In</a>
+                 
+
+            
+                    @guest
+                        <a class="mamunur_rashid_top_book_btn" href="{{ url('/frontendpages/sign') }}">Sign In</a>
+                    @endguest
+               
+
+      <!-- <------------------------------------------------------ -->
+    
+             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
+                    <ul class="navbar-nav ml-auto">
+                        
+                        <li class="nav-item dropdown">
+                         
+
+                        
+                        @auth
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" >
+                        
+                        {{Auth::user()->FirstName}}
+                        </a>
+                        @endauth
+
+
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{route('ticket_view')}}"> View Ticket</a>
+                   
+                    <a class="dropdown-item" href="http://127.0.0.1:8000/logout"
+                        onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"> Logout</a>
+                            
+                                       
+                    
+
+                    <form id="logout-form" action="http://127.0.0.1:8000/logout" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+      <!-- <------------------------------------------------------ -->
+
+            
+           
+
+
+
                 <!-- <a class="mamunur_rashid_top_book_btn" href="{{ url('/frontendpages/sign') }}">Sign out</a> -->
                  </div>
             </div>
@@ -159,10 +186,10 @@
                 </div>
                 <div class="col-md-6 col-sm-12 text-center">
                     <ul class="footer-soical">
-                    <li>  <a href="https://www.facebook.com/thesoftking"> <i class="fa fa-facebook"></i></a></li>
-                     <li>  <a href="http://thesoftking.com/contact#asda"> <i class="fa fa-twitter"></i></a></li>
-                     <li>  <a href="http://thesoftking.com/contact#asda"> <i class="fa fa-linkedin"></i></a></li>
-                     <li>  <a href="http://thesoftking.com/contact#asda"> <i class="fa fa-stack-overflow"></i></a></li>
+                    <li>  <a href="#"> <i class="fa fa-facebook"></i></a></li>
+                     <li>  <a href="#"> <i class="fa fa-twitter"></i></a></li>
+                     <li>  <a href="#"> <i class="fa fa-linkedin"></i></a></li>
+                     <li>  <a href="#"> <i class="fa fa-stack-overflow"></i></a></li>
                      </ul>
                 </div>
             </div>

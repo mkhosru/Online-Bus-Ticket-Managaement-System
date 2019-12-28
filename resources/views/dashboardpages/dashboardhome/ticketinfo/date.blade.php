@@ -55,7 +55,7 @@ OBTMS dashboard
                                             </td>
 
                                             <td>
-                                              <a href="{{ url('/admin/date/delete/') }}\{{ $only_date->id }}" class="btn btn-primary">Delete</a>
+                                              <a href="{{ url('/admin/date/delete/') }}\{{ $only_date->id }}" class="btn btn-primary delete_btn">Delete</a>
                                             </td>
                                       </tr>
                                 @endforeach

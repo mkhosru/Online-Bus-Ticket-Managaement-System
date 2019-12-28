@@ -104,7 +104,7 @@ OBTMS dashboard
 					</div>
 
 					<div class="form-group row">
-					    <label for="duration_id" class="col-sm-2 col-form-label">Duration</label>
+					    <label for="duration_id" class="col-sm-2 col-form-label">Chassis No</label>
 					    <div class="col-sm-10">
 					      <select name="duration_id" id="duration_id" class="form-control" required>
 					      	<option >Select</option>

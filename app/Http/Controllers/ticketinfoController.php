@@ -15,11 +15,14 @@ use App\Duration;
 use App\Terminal;
 use App\AddBus;
 use App\Registerterminal;
+use App\User;
 
 
 
 class ticketinfoController extends Controller
 { 
+
+
 
      //Not found Page
     function not_found(){
@@ -30,7 +33,7 @@ class ticketinfoController extends Controller
 
 
     
-    // <-----------------------------------------Bus Name Start--------------------------------->
+    // <-------------------------Bus Name Start-------------------------->
 	//busname page
     function busname()
     {
@@ -58,6 +61,7 @@ class ticketinfoController extends Controller
      {
      		$single_busname = BusName::find($id);
      	return view('dashboardpages/dashboardhome/ticketinfo/edit/busnameEdit',compact('single_busname'));
+
      }
 
      //busname update
@@ -65,6 +69,7 @@ class ticketinfoController extends Controller
      	BusName::find($request->id)->update([
      		'operator_name' =>$request->operator_name,
      	]);
+        Alert::success('Success Bus Name edited', 'Successfully edited');
      	return redirect(route('bus_busname'));
      }
 
@@ -92,6 +97,7 @@ class ticketinfoController extends Controller
          'date' =>$request->date,
 
     	   ]);
+         Alert::success('Successfully Date added', 'Successfully added');
     	return back();
     }
 
@@ -139,6 +145,7 @@ class ticketinfoController extends Controller
       Departure::insert([
            'departure_name' =>$request->departure,
              ]);
+       Alert::success('Successfully Departure added', 'Successfully added');
          return back();
 
     }
@@ -186,6 +193,7 @@ class ticketinfoController extends Controller
     	Destination::insert([
     		'destination_palce' =>$request->destination,
     	]);
+        Alert::success('Successfully Destination added', 'Success Message');
     	 return back();
     }
 
@@ -287,6 +295,7 @@ class ticketinfoController extends Controller
     	Time::insert([
     		'time' =>$request->time,
                ]);
+        Alert::success('Successfully Time Added', 'Success Message');
     	return back();
     }
 
@@ -328,7 +337,8 @@ class ticketinfoController extends Controller
 
     //Total seat insert
     function totalseat_insert(Request $request)
-    {
+    {   
+
     	TotalSeat::insert([
     		'total_seat' =>$request->total_seat,
 
@@ -544,6 +554,21 @@ class ticketinfoController extends Controller
 
  
 // <-----------------------------------register Terminal End--------------------------------->
+
+
+
+
+// <-----------------------------------registered customer list start---------------------->
+
+//registered customer list
+function reg_customer_list()
+{
+    $single_user = User::all();
+    return view('dashboardpages/reg_customer_list',compact('single_user'));
+}
+
+
+// <-----------------------------------registered customer list End------------------------>
 
    
 }

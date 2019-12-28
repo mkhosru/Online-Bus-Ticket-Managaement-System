@@ -38,3 +38,13 @@
 .delete_btn{
  background-color: #e40c34;
 		 }
+
+.musa th {
+    width: 50%;
+}
+.due{
+	background-color: #ffc107;
+}
+.white .BusSubmit {
+    margin-top: 0;
+}

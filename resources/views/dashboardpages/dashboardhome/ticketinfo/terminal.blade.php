@@ -41,7 +41,7 @@ OBTMS dashboard
                           <thead>
                                 <tr>
                                   <th scope="col">ID</th>
-                                  <th scope="col">Date</th>
+                                  <th scope="col">Terminal</th>
                                   <th scope="col">Action</th>
                                   <th scope="col">Action</th>
                                 </tr>
@@ -58,7 +58,7 @@ OBTMS dashboard
                                       </td>
 
                                       <td>
-                                        <a href="{{ url('/admin/terminal/delete/') }}\{{ $only_terminal->id }}" class="btn btn-primary">Delete</a>
+                                        <a href="{{ url('/admin/terminal/delete/') }}\{{ $only_terminal->id }}" class="btn btn-primary delete_btn">Delete</a>
                                       </td>
                                 </tr>
                               @endforeach

@@ -25,8 +25,8 @@ OBTMS dashboard
                         <div class="col-md-4">
                             <div class="form-group">
 
-                                <h5>Duration</h5>
-                             <input type="number" value="" name="duration" id="duration"  class="form-control" placeholder="Duration" autocomplete="off">
+                                <h5>Chassis Number</h5>
+                             <input type="number" value="" name="duration" id="duration"  class="form-control" placeholder="Chassis" autocomplete="off">
                              </div>
 
                              <div>
@@ -40,7 +40,7 @@ OBTMS dashboard
                           <thead>
                                 <tr>
                                   <th scope="col">ID</th>
-                                  <th scope="col">Duration</th>
+                                  <th scope="col">Chassis Number</th>
                                   <th scope="col">Action</th>
                                   <th scope="col">Action</th>
                                 </tr>
@@ -58,7 +58,7 @@ OBTMS dashboard
                                             </td>
 
                                             <td>
-                                              <a href="{{ url('/admin/duration/delete/') }}\{{ $only_duration->id }}" class="btn btn-primary">Delete</a>
+                                              <a href="{{ url('/admin/duration/delete/') }}\{{ $only_duration->id }}" class="btn btn-primary delete_btn">Delete</a>
                                             </td>
                                       </tr>
                                @endforeach

@@ -79,17 +79,17 @@ OBTMS-Home
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <td>ID</td>
-                                <td>Operator name</td>
-                                <td>From</td>
-                                <td>To</td>
-                                <td>Coach Type</td>
-                                <td>Date</td>
-                                <td>Time</td>
-                                <td>Duration</td>
-                                <td>Total Seat</td>
-                                <td>Price</td>
-                                <td>View Seats</td>
+                                <th>ID</th>
+                                <th>Operator name</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Coach Type</td>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Duration</th>
+                                <th>Total Seat</th>
+                                <th>Price</th>
+                                <th>View Seats</th>
                             </tr>
                         </thead>
 
@@ -97,21 +97,21 @@ OBTMS-Home
                                 @foreach($all_addbus as $addbus)
                                
                               <tr>
-                                <th scope="row">{{ $addbus->id }}</th>
+                                <td scope="row">{{ $addbus->id }}</td>
 
-                                <th scope="row">{{ $addbus->relationbetweenBusName->operator_name }}</th>
-                                <th scope="row">{{ $addbus->relationbetweenDeparture->departure_name }}</th>
-                                <th scope="row">{{ $addbus->relationbetweenDestination->destination_palce }}</th>
-                                <th scope="row">{{ $addbus->relationbetweenCoachType->coach_type }}</th>
-                                <th scope="row">{{ $addbus->relationbetweenDate->date }}</th>
-                                <th scope="row">{{ $addbus->relationbetweenTime->time }}</th>
-                                <th scope="row">{{ $addbus->relationbetweenDuration->duration }}</th>
-                                <th scope="row">{{ $addbus->realtionbetweenTotalseat->total_seat }}</th>
-                                <th scope="row">{{ $addbus->relationbetweenPrice->price }}</th>
-                                    <td>
-                                        <a href="{{ url('/frontendpages/seat') }}\{{ $addbus->id }}" class="btn btn-primary" target="_blank">View
+                                <td scope="row">{{ $addbus->relationbetweenBusName->operator_name }}</td>
+                                <td scope="row">{{ $addbus->relationbetweenDeparture->departure_name }}</td>
+                                <td scope="row">{{ $addbus->relationbetweenDestination->destination_palce }}</td>
+                                <td scope="row">{{ $addbus->relationbetweenCoachType->coach_type }}</td>
+                                <td scope="row">{{ $addbus->relationbetweenDate->date }}</td>
+                                <td scope="row">{{ $addbus->relationbetweenTime->time }}</td>
+                                <td scope="row">{{ $addbus->relationbetweenDuration->duration }}</td>
+                                <td scope="row">{{ $addbus->realtionbetweenTotalseat->total_seat }}</td>
+                                <td scope="row">{{ $addbus->relationbetweenPrice->price }}</td>
+                                    <th>
+                                        <a href="{{ url('/frontendpages/seat') }}\{{ $addbus->id }}" class="btn btn-primary">View
                                             Seats</a>
-                                    </td>
+                                    </th>
                                 </tr>
                               @endforeach       
                         </tbody>

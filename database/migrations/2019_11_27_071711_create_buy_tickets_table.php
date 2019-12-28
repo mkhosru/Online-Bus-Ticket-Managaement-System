@@ -31,6 +31,7 @@ class CreateBuyTicketsTable extends Migration
             $table->integer('dura_chassis_num');
             $table->integer('payment_status');
             $table->integer('ticket_token');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

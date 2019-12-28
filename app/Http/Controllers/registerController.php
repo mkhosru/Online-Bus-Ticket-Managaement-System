@@ -4,12 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Contact;
 use Hash;
 
 
 class registerController extends Controller
 {
     
+    //contact
+    function contact()
+    {
+     return view('frontendpages/frontend/contact');
+    }
+
+    function contact_customer(Request $request)
+    {
+      Contact::insert([
+        'name' =>$request->name,
+        'email' =>$request->email,
+        'phone' =>$request->phone,
+        'enquiry' =>$request->enquiry,
+      ]);
+      return back();
+    }
 
 
     function register()

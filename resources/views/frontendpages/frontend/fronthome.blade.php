@@ -26,43 +26,7 @@ OBTMS-Home
                 </div>
             </div>
 
-            <div class="row b-serch">
-                <div class="col-12">
-                    <div class="h-seaerch-area">
-
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show normal active" id="nav-home" role="tabpanel"
-                                 aria-labelledby="nav-home-tab">
-                                <form action="https://ideal.thesoftking.com/bluebus/search" method="get">
-                                    <div class="form-row">
-                                        <div class="col-lg-3">
-                                            <input type="text" name="start_point" value=""
-                                                   class="form-control form-control-lg"
-                                                   id="fromAutoComplete" placeholder="From">
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <input type="text" name="end_point" value=""
-                                                   id="toAutoComplete" class="form-control form-control-lg"
-                                                   placeholder="To">
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <input type="text" name="date" id="datetimepicker2" value=""
-                                                   class="form-control form-control-lg"
-                                                   placeholder="Date">
-                                        </div>
-
-                                        <div class="col-lg-3">
-                                            <button type="submit"
-                                                    class="btn btn-primary btn-lg  h-serch mamunur_rashid_form_sm">
-                                                SEARCH                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
     <!-- =========== banner end =========== -->
@@ -333,13 +297,13 @@ OBTMS-Home
                 </div>
             </div>
             <div class="row">
-                                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <div class="c-box c-box1">
                             <div class="img">
                                 <img class="img-fluid" src="../frontend/assets/images/post/post_thumb1550128400.jpg" alt="...">
                             </div>
                             <article>
-                                <a href="details/2/it-is-a-long-established-fact-that-a-reader-will-be-distracted.html">
+                                <a href="#">
                                     <h4>It is a long established fact that a reader will be distracted</h4>
                                 </a>
                                 <div class="b-c">
@@ -361,7 +325,7 @@ OBTMS-Home
                                 <img class="img-fluid" src="../frontend/assets/images/post/post_thumb1550128633.jpg" alt="...">
                             </div>
                             <article>
-                                <a href="details/10/labore-et-dolore-magna-aliqua-ut-enim-ad-minim-veniam.html">
+                                <a href="#">
                                     <h4>labore et dolore magna aliqua Ut enim ad minim veniam</h4>
                                 </a>
                                 <div class="b-c">
@@ -383,7 +347,7 @@ OBTMS-Home
                                 <img class="img-fluid" src="../frontend/assets/images/post/post_thumb1550128621.jpg" alt="...">
                             </div>
                             <article>
-                                <a href="details/9/there-is-no-one-who-loves-pain-itself-who-seeks-after-it-and-wants-to-have-it.html">
+                                <a href="#">
                                     <h4>There is no one who loves pain itself, who seeks after it and wants to have it,</h4>
                                 </a>
                                 <div class="b-c">
@@ -427,11 +391,11 @@ OBTMS-Home
                                 </div>
                             </div>
                         </div>
-                                                <form id="c-form" action="https://ideal.thesoftking.com/bluebus/enquiry" method="post">
-                            <input type="hidden" name="_token" value="NIDL433gqQP8cjIVDuTF4VoNMFBUvBERPPkBSOHS">                            <div class="row">
+                            <form id="c-form" action="{{ route('customer_contact') }}" method="post">
+                            @csrf     
+                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" placeholder="Enter Your Name" name="name"
-                                           value="">
+                                    <input type="text" class="form-control" placeholder="Enter Your Name" name="name" value="">
                                 </div>
                                 <div class="col-md-12">
                                     <input type="email" class="form-control" placeholder="Enter Your Mail" name="email"

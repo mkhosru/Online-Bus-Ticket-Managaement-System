@@ -25,7 +25,7 @@ OBTMS dashboard
                         <div class="col-md-4">
                             <div class="form-group">
 
-                                <h5>Duration</h5>
+                                <h5>Chassis Number</h5>
                              <input type="number" value="{{ $single_duration->duration }}" name="duration" id="duration"  class="form-control"  autocomplete="off">
 
                              <input type="hidden" value="{{ $single_duration->id }}" name="id" id="duration"  class="form-control"  autocomplete="off">

@@ -29,6 +29,41 @@ use Auth;
 
 class frontendController extends Controller
 {
+    // logout
+    // function logout()
+    // {
+    //     return view('frontendpages/frontend/fronthome');
+    // }
+
+    //faq
+    function faq(){
+        return view('frontendpages/frontend/faq');
+    }
+
+    //Blog page
+    function blog()
+    {
+        return view('frontendpages/frontend/blog');
+    }
+
+    //delete cofirmed ticket
+    function ticket_delete($id)
+    {
+        BuyTicket::findOrFail($id)->delete();
+        return back();
+    }
+
+
+
+    //view confirmed ticket
+    function view_ticket(){
+        $single_ticket = BuyTicket::all();
+        return view('/frontendpages/viewticket',compact('single_ticket'));
+    }
+    
+
+
+
     function index()
     {
     	return view('frontendpages/frontend/fronthome');
@@ -45,6 +80,23 @@ class frontendController extends Controller
 
     function seat($id)
     {
+        // seat selection
+        $all_seat = null;
+
+        $dura_chassis = AddBus::findOrFail($id)->duration_id;
+        $chassis_no_dura = Duration::findOrFail($dura_chassis)->duration;
+
+        $all_booked_ticket = BuyTicket::where('dura_chassis_num',$chassis_no_dura)->get();
+        foreach ($all_booked_ticket as $key => $value) {
+            $all_seat.=$value->seat_number;
+        }
+        $actual_seat = explode(",", $all_seat);
+        array_pop($actual_seat);
+
+
+
+
+
         
         $single_price_id = AddBus::findOrFail($id)->price_id;
         $ticket_price = Price::findOrFail($single_price_id)->price;
@@ -77,13 +129,12 @@ class frontendController extends Controller
         $single_coach_type = AddBus::findOrFail($id)->coach_type_id;
         $Bus_coach = Coach::findOrFail($single_coach_type)->coach_type;
 
-        $dura_chassis = AddBus::findOrFail($id)->duration_id;
-        $chassis_no_dura = Duration::findOrFail($dura_chassis)->duration;
+        
 
         
 
 
-    	return view('frontendpages/frontend/seat',compact('ticket_price','total_seat_id','bus_name','bus_time','bus_date','bus_depearture','bus_destination','boarding_point','customer','customer_phone','Bus_coach','chassis_no_dura'));
+    	return view('frontendpages/frontend/seat',compact('ticket_price','total_seat_id','bus_name','bus_time','bus_date','bus_depearture','bus_destination','boarding_point','customer','customer_phone','Bus_coach','chassis_no_dura','actual_seat'));
     }
 
     function sign()
@@ -95,6 +146,8 @@ class frontendController extends Controller
     {
         return view('frontendpages/frontend/about');
     }
+    
+    
     
     //User Info Check before ticket paymet
     function user_index()
@@ -159,7 +212,20 @@ class frontendController extends Controller
         if ($check) {
             $ticket_price = $request->total_fare;
             $customer_name = $request->customer_name;
-            return view('stripe',compact('check','ticket_price','customer_name'));
+            $customer_phone =$request->phone;
+            $bus_name =$request->operator;
+            $coach =$request->coach_type;
+            $date =$request->journey_date;
+            $time =$request->time;
+            $depearture =$request->departure;
+            $destination =$request->destination;
+            $boarding =$request->boarding_point;
+            $seat_number =$request->seat_number;
+            $total_seat =$request->total_seat;
+            $price =$request->price;
+            $chassis =$request->dura_chassis_num;
+            
+            return view('stripe',compact('check','ticket_price','customer_name','customer_phone','bus_name','coach','date','time','depearture','destination','boarding','seat_number','total_seat','price','chassis'));
         }
         else{
             echo "Fail";

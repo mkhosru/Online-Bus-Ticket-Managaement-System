@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\add_bus;
+use App\BuyTicket;
 use Auth;
 
 class dashboardhomeController extends Controller
@@ -20,7 +21,17 @@ class dashboardhomeController extends Controller
 
     function index()
     {
-    	return view('dashboardpages/dashboardhome/dashhome');
+        $all_booked_ticket = BuyTicket::all();
+    	return view('dashboardpages/dashboardhome/dashhome',compact('all_booked_ticket'));
+    }
+
+
+    // Admin view cancel list
+    function cancel_list()
+    {
+
+        $single_info = BuyTicket::onlyTrashed();
+        return view('dashboardpages/cancel',compact('single_info'));
     }
 
    

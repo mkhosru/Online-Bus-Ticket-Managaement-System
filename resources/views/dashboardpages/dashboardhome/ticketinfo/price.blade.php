@@ -40,7 +40,7 @@ OBTMS dashboard
                           <thead>
                                 <tr>
                                   <th scope="col">ID</th>
-                                  <th scope="col">Date</th>
+                                  <th scope="col">Price</th>
                                   <th scope="col">Action</th>
                                   <th scope="col">Action</th>
                                 </tr>

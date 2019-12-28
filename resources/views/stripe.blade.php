@@ -56,6 +56,18 @@
                         <input type="hidden" name="check" value="{{ $check }}">
                         <input type="hidden" name="ticket_price" value="{{ $ticket_price }}">
                         <input type="hidden" name="customer_name" value="{{ $customer_name }}">
+                        <input type="hidden" name="phone" value="{{ $customer_phone }}">
+                        <input type="hidden" name="operator" value="{{ $bus_name }}">
+                        <input type="hidden" name="coach_type" value="{{ $coach }}">
+                        <input type="hidden" name="journey_date" value="{{ $date }}">
+                        <input type="hidden" name="time" value="{{ $time }}">
+                        <input type="hidden" name="departure" value="{{ $depearture }}">
+                        <input type="hidden" name="destination" value="{{ $destination }}">
+                        <input type="hidden" name="boarding_point" value="{{ $boarding }}">
+                        <input type="hidden" name="seat_number" value="{{ $seat_number }}">
+                        <input type="hidden" name="total_seat" value="{{ $total_seat }}">
+                        <input type="hidden" name="price" value="{{ $price }}">
+                        <input type="hidden" name="dura_chassis_num" value="{{ $chassis }}">
   
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
@@ -99,7 +111,8 @@
   
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now (${{ $ticket_price }})</button>
+                                
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ({{ $ticket_price }})</button>
                             </div>
                         </div>
                           

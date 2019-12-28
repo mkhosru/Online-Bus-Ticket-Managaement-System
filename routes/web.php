@@ -2,6 +2,31 @@
 
 
 
+// Frontend App
+
+// Route::get('/logout', 'Auth.LoginController@check')->name('log_out');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// mail
+Route::get('/send/email', 'MailController@mail');
+
+
 
 
 //User Info check
@@ -36,6 +61,24 @@ Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post')
 Route::get('/admin/dashboardpages', 'dashboardhomeController@index')->name('dashboard_home');
 Route::get('/admin/add_bus', 'dashboardhomeController@add')->name('dashboard_add_bus');
 Route::get('/admin/not_found', 'ticketinfoController@not_found')->name('dashboard_not_found');
+
+//Admin can view registered list
+Route::get('/admin/reg/customer/list', 'ticketinfoController@reg_customer_list')->name('Reg_list_customer');
+
+//Individual Bus report by Chassis No
+Route::get('/admin/bus/report', 'ReportController@bus_report')->name('report_bus');
+
+Route::post('/report', 'ReportController@report')->name('report');
+
+Route::get('/admin/report', 'ReportController@report_info')->name('info_report');
+
+
+
+//admin ticket cancelled view
+Route::get('/admin/cancel', 'dashboardhomeController@cancel_list')->name('list_cancel');
+
+
+
 
 
 // Route::post('/admin/bus/insert', 'dashboardhomeController@insert')->name('bus_insert');
@@ -262,14 +305,37 @@ Route::get('/admin/terminal/delete/{id}', 'ticketinfoController@terminal_delete'
 
 
 // Frontend------------------------>
-Route::get('/frontendpages/homepag', 'frontendController@index')->name('front_home_page');
+Route::get('/', 'frontendController@index')->name('front_home_page');
+
+//contact page
+Route::get('/contact', 'registerController@contact')->name('contact');
+Route::post('/contact/customer', 'registerController@contact_customer')->name('customer_contact');
+
+// Blog page
+Route::get('/blog', 'frontendController@blog')->name('blog');
+
+//faq
+Route::get('/faq', 'frontendController@faq')->name('faq');
+
+
+
+
+
 Route::get('/frontendpages/search', 'frontendController@search')->name('front_search');
-Route::get('/frontendpages/seat/{id}', 'frontendController@seat')->name('front_seat');
+Route::get('/frontendpages/seat/{id}', 'frontendController@seat')->middleware('auth')->name('front_seat');
 Route::get('/frontendpages/sign', 'frontendController@sign')->name('sign_in');
+
+//About Page
 Route::get('/frontendpages/about', 'frontendController@about')->name('about_page');
 
 //Bus List Search Result
 Route::post('/search', 'frontendController@search_result')->name('result_search');
+
+//View customer ticket
+Route::get('/frontendpages/ticket', 'frontendController@view_ticket')->name('ticket_view');
+
+Route::get('/ticket/delete/{id}', 'frontendController@ticket_delete')->name('delete_ticket');
+
 
 
 
@@ -293,9 +359,9 @@ Route::post('/frontendpages/register/create', 'registerController@create')->name
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 

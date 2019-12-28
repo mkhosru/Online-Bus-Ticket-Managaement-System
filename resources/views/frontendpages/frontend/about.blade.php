@@ -6,6 +6,30 @@ OBTMS-Home
 
 @section('content')
 
+
+ <section id="breadcrumb">
+    <div class="overly"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 text-center">
+                <div class="breadcrumbinfo">
+                    <article>
+                        <h2>About Pages</h2>
+                        
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ----------------------------------------------------- -->
+
+
+
+
+
  <section id="choose-us">
         <div class="container">
             <div class="row justify-content-center">
